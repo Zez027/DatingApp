@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../_services/account.service';
+import { Router } from '@angular/router';
+import { response } from 'express';
+import { Observable, of } from 'rxjs';
+import { User } from '../_models/user';
+
+@Component({
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrl: './nav.component.css'
+})
+export class NavComponent implements OnInit{
+  model: any = {};
+
+  constructor(public accountService: AccountService, private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  login() {
+    this.accountService.login(this.model).subscribe({
+      next: response => {
+        console.log(response);
+      },
+      error: error => console.log(error)
+    })
+    console.log(this.model);
+  }
+
+  loggout() {
+    this.accountService.loggout();
+    this.router.navigate(['/']);
+  }
+}
