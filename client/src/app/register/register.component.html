@@ -1,16 +1,38 @@
-<form #registerForm="ngForm" (submit)="register()" autocomplete="off">
-    <h2 class="text-center text-primary"> Entrar</h2>
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2 class="text-center text-primary">Entrar</h2>
     <hr>
-    <div class="class mb-3">
-        <input type="text" class="form-control" name="username" 
-        [(ngModel)]="model.username" placeholder="Usuario">
+
+    <div class="mb-3">
+        <label style="margin-right: 10px;">Genero:</label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="male" formControlName="gender"> Masculino
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input ms-3" value="female" formControlName="gender"> Feminino
+        </label>
     </div>
-    <div class="class mb-3">
-        <input type="password" class="form-control" name="password" 
-        [(ngModel)]="model.password" placeholder="Senha">
+
+    <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]="'Usuario'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" [label]="'Know As'"></app-text-input>
+    <div *ngIf="registerForm.controls['knownAs'].invalid && registerForm.controls['knownAs'].touched" class="text-danger">
+        KnownAs é obrigatório.
     </div>
+    <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Data de aniversario'" [maxDate]="maxDate"></app-date-picker>
+    <app-text-input [formControl]="$any(registerForm.controls['city'])" [label]="'Cidade'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Pais'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Senha'" [type]="'password'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirmar senha'" [type]="'password'"></app-text-input>
+  
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
     <div class="class text-center">
-        <button class="btn btn-success me-2" type="submit">Registrar</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Registrar</button>
         <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
     </div>
 </form>

@@ -1,7 +1,69 @@
-.nv-file-over{
+.my-drop-zone {
+    border: 2px dashed #007bff;
+    padding: 20px;
+    min-height: 150px;
+  }
+  
+  .my-drop-zone.nv-file-over {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+
+/* .nv-file-over{
     border: dotted 3px red;
-}
+} */
 
 input[type=file]{
     color: transparent;
+}
+
+/* Tamanho das imagens */
+.img-thumbnail {
+  width: 100%;
+  max-width: 200px;  /* Ajuste o valor conforme necessário */
+  height: auto;
+  margin-bottom: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Botões alinhados um ao lado do outro */
+button.btn {
+  font-size: 12px;  /* Menor tamanho de fonte para os botões */
+  padding: 5px 10px; /* Ajuste o padding para deixar os botões menores */
+  width: auto; /* Ajuste a largura dos botões */
+  margin-right: 5px; /* Espaço entre os botões */
+}
+
+.photo-item {
+  display: flex;
+  flex-direction: column; /* Exibe a imagem e os botões em coluna */
+  align-items: center; /* Centraliza o conteúdo */
+}
+
+/* Lista de fotos */
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;  /* Permite que as fotos se ajustem na linha seguinte se necessário */
+  gap: 5px;  /* Diminui o espaçamento entre as fotos */
+}
+
+/* Adiciona algum espaçamento entre as fotos e os botões */
+.card-body {
+  padding: 5px;
+}
+
+/* Centraliza a foto e os botões dentro do card */
+.card {
+  max-width: 200px;  /* Limita o tamanho do card */
+  margin: 0 auto;  /* Centraliza o card */
+  text-align: center; /* Alinha o conteúdo ao centro */
+}
+
+/* Cria a linha para os botões */
+.photo-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 5px; /* Espaço entre a imagem e os botões */
 }

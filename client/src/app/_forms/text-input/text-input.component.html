@@ -1,0 +1,21 @@
+<div class="class mb-3">
+    <input 
+        type={{type}} 
+        [class.is-invalid]="control.touched && control.invalid"
+        class="form-control" 
+        [formControl]="control"
+        placeholder={{label}}>
+        <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+            Por favor informar {{label}}
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">
+            {{label}} deve ter mais de {{control.errors?.['minlength'].requiredLength}} caracteres
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">
+            {{label}} deve ter menos de {{control.errors?.['maxlength'].requiredLength}} caracteres
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">
+            Senhas nao coincidem
+        </div>
+</div>
+
